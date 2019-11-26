@@ -1,9 +1,5 @@
 <?php
 
-class Arma{
-    public $nome;
-    public $capacidade;
-}
 abstract class Carta {
     public $id;
     public $nome;
@@ -32,7 +28,7 @@ class Local extends Carta{
         $this->status = $status;
     }
     public function forca(){
-        return ($raio/200 + $populacao/4 + $status + $level)/4
+        return ($raio/200 + $populacao/4 + $status + $level)/4;
     }
 }
 
@@ -46,7 +42,7 @@ class Veiculo extends Carta{
         $this->capacidade = $capcacidade;
     }
     public function forca(){
-        return ($velocidade/200 + $capacidade/200 + $level)/3
+        return ($velocidade/200 + $capacidade/200 + $level)/3;
     }
 
 }
@@ -76,5 +72,14 @@ class Personagem extends Carta{
         return ($idade + $luta*2 + $magia*3 + $sobrehumano*3 + $level)/10;
     }
 }
+
+$armaH = new Arma("Mjolnir", 4);
+
+$heroi = new Personagem(0, "Goku Fake", 2, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
+20, "Humano", 3, 2, 1, $armaH);
+
+echo "ID: ", $heroi->id, " Nome: ", $heroi->nome, " Level: ", $heroi->level, " Cor: ", $heroi->cor,
+" Imagem: ", $heroi->imagem, " Idade: ", $heroi->idade, " Raça: ", $heroi->raca, " Luta: ", $heroi->luta,
+" Magia: ", $heroi->magia, " Sobrehumano: ", $heroi->sobrehumano, " Nome Arma: ", $heroi->arma->nome, " Capacidade Arma: ", $heroi->arma->capacidade;
 
 ?>
