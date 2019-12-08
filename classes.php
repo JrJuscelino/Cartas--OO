@@ -127,37 +127,4 @@ $batalha[] = new Batalha($cartas[0], $cartas[1]);
 
 $batalha[] = new Batalha($cartas[2], $cartas[3]);
 
-echo "ID: ", $cartas[0]->id, " Nome: ", $cartas[0]->nome, " Level: ", $cartas[0]->level, " Cor: ", $cartas[0]->cor,
-" Imagem: ", $cartas[0]->imagem, " Idade: ", $cartas[0]->idade, " Raça: ", $cartas[0]->raca, " Luta: ", $cartas[0]->luta,
-" Magia: ", $cartas[0]->magia, " Sobrehumano: ", $cartas[0]->sobrehumano, " Nome Arma: ", $cartas[0]->arma->nome, " Capacidade Arma: ", $cartas[0]->arma->capacidade,
-" Força: ", $cartas[0]->forca();
-
-echo "<br> <br> ID: ", $cartas[1]->id, " Nome: ", $cartas[1]->nome, " Level: ", $cartas[1]->level, " Cor: ", $cartas[1]->cor,
-" Imagem: ", $cartas[1]->imagem, " Idade: ", $cartas[1]->idade, " Raça: ", $cartas[1]->raca, " Luta: ", $cartas[1]->luta,
-" Magia: ", $cartas[1]->magia, " Sobrehumano: ", $cartas[1]->sobrehumano, " Nome Arma: ", $cartas[1]->arma->nome, " Capacidade Arma: ", $cartas[1]->arma->capacidade,
-" Força: ", $cartas[1]->forca();
-
-echo "<br> <br> ID: ", $cartas[2]->id, " Nome: ", $cartas[2]->nome, " Level: ", $cartas[2]->level, " Cor: ", $cartas[2]->cor,
-" Imagem: ", $cartas[2]->imagem, " Idade: ", $cartas[2]->idade, " Raça: ", $cartas[2]->raca, " Luta: ", $cartas[2]->luta,
-" Magia: ", $cartas[2]->magia, " Sobrehumano: ", $cartas[2]->sobrehumano, " Nome Arma: ", $cartas[2]->arma->nome, " Capacidade Arma: ", $cartas[2]->arma->capacidade,
-" Força: ", $cartas[2]->forca();
-
-echo "<br> <br> ID: ", $cartas[3]->id, " Nome: ", $cartas[3]->nome, " Level: ", $cartas[3]->level, " Cor: ", $cartas[3]->cor,
-" Imagem: ", $cartas[3]->imagem, " Área: ", $cartas[3]->area, " População: ", $cartas[3]->area, " Status: ", $cartas[3]->status, 
-"Força: ", $cartas[3]->forca();
-
-echo "<br> <br> ID: ", $cartas[4]->id, " Nome: ", $cartas[4]->nome, " Level: ", $cartas[4]->level, " Cor: ", $cartas[4]->cor, 
-" Força: ", $cartas[4]->forca(), " Imagem: ", $cartas[4]->imagem, " Velocidade: ", $cartas[4]->velocidade, " Voa? "; 
-
-if($cartas[4]->voa){
-    echo "Sim";
-} else{
-    echo "Não";
-}
-echo " Capacidade: ", $cartas[4]->capacidade;
-
-echo " <br <br> <br> Batalha entre ", $cartas[0]->nome, " e ", $cartas[1]->nome, ": ", $batalha[0]->vencedor();
-
-echo " <br <br> <br> Batalha entre ", $cartas[2]->nome, " e ", $cartas[3]->nome, ": ", $batalha[1]->vencedor();
-
 ?>
