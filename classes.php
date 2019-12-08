@@ -84,6 +84,26 @@ class Personagem extends Carta{
     }
 }
 
+class Batalha{
+    public $c1;
+    public $c2;
+
+    function __construct($c1,$c2){
+        $this->c1 = $c1;
+        $this->c2 = $c2;
+    }
+
+    public function vencedor(){
+        if($this->c1->forca() > $this->c2->forca()){
+            return $this->c1->nome;
+        }else if($this->c2->forca() > $this->c1->forca()){
+            return $this->c1->nome;
+        }else{
+            return "Empate";
+        }
+    }
+}
+
 $armas[] = new Arma("Mjolnir", 4);
 $armas[] = new Arma("Escudo do Capitaum", 4);
 $armas[] = new Arma("Gume do Infinito", 4);
@@ -102,6 +122,10 @@ $cartas[] = new Local(3, "Latveria", 3, "yellow", "https://esferasdodragao.com.b
 
 $cartas[] = new Veiculo(4, "SpiderMovel", 4, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
  90, False, 1);
+
+$batalha[] = new Batalha($cartas[0], $cartas[1]);
+
+$batalha[] = new Batalha($cartas[2], $cartas[3]);
 
 echo "ID: ", $cartas[0]->id, " Nome: ", $cartas[0]->nome, " Level: ", $cartas[0]->level, " Cor: ", $cartas[0]->cor,
 " Imagem: ", $cartas[0]->imagem, " Idade: ", $cartas[0]->idade, " Raça: ", $cartas[0]->raca, " Luta: ", $cartas[0]->luta,
@@ -131,5 +155,9 @@ if($cartas[4]->voa){
     echo "Não";
 }
 echo " Capacidade: ", $cartas[4]->capacidade;
+
+echo " <br <br> <br> Batalha entre ", $cartas[0]->nome, " e ", $cartas[1]->nome, ": ", $batalha[0]->vencedor();
+
+echo " <br <br> <br> Batalha entre ", $cartas[2]->nome, " e ", $cartas[3]->nome, ": ", $batalha[1]->vencedor();
 
 ?>
