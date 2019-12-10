@@ -7,6 +7,13 @@
   </head>
   <body>
     <?php include('classes.php'); ?>
+    <div class = "cartas">
+    <?php
+        foreach($cartas as $carta):
+            geraCarta($carta);
+        endforeach;    
+    ?>        
+    </div>
     <div>
         <h1>BATALHA</h1>
         <form action = " " method = "post">
@@ -18,7 +25,7 @@
         VS
             <select name = "carta2">
                 <?php foreach ($cartas as  $i=>$value): ?>
-                <?php echo "<option value=",$i,">",selectedC2($value),"</option>"; ?>
+                <?php echo "<option value=",$i,">",$value->nome,"</option>"; ?>
                 <?php endforeach; ?>
             </select>
             <input type="submit" name="batalhar" value="Batalhar">
@@ -27,7 +34,7 @@
         <?php 
         if(isset($_POST["batalhar"])){
             $batalha = new Batalha($cartas[$_POST["carta1"]], $cartas[$_POST["carta2"]]);
-            echo $batalha->vencedor();
+            $batalha->vencedor();
         }
         ?>
     </div>     

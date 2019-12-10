@@ -32,6 +32,10 @@ class Local extends Carta{
         $this->populacao = $populacao;
         $this->status = $status;
     }
+
+    public function getClassName(){
+        return get_class($this);
+    }
     public function forca(){
         return ($this->area/200 + $this->populacao/4 + $this->status + $this->level)/4;
     }
@@ -39,7 +43,7 @@ class Local extends Carta{
 
 class Veiculo extends Carta{
     public $velocidade;
-    public $voa;
+    private $voa;
     public $capacidade;
     function __construct($id, $nome, $level, $cor, $imagem, $velocidade, $voa, $capacidade){
         $this->id   = $id;
@@ -52,6 +56,19 @@ class Veiculo extends Carta{
         $this->voa = $voa;
         $this->capacidade = $capacidade;
     }
+
+    public function getClassName(){
+        return get_class($this);
+    }
+
+    public function voar(){
+        if($this->voa == True){
+            return "Sim";
+        }else{
+            return "Não";
+        }
+    }
+
     public function forca(){
         return ($this->velocidade/200 + $this->capacidade/200 + $this->level)/3;
     }
@@ -60,9 +77,9 @@ class Veiculo extends Carta{
 class Personagem extends Carta{
     public $idade;
     public $raca;
-    public $luta;
-    public $magia;
-    public $sobrehumano;
+    private $luta;
+    private $magia;
+    private $sobrehumano;
     public $arma;
 
     function __construct($id, $nome, $level, $cor, $imagem, $idade, $raca, $luta, $magia, $sobrehumano, $arma) {
@@ -77,7 +94,11 @@ class Personagem extends Carta{
         $this->magia = $magia;
         $this->sobrehumano = $sobrehumano;
         $this->arma = $arma;
-	}
+    }
+    
+    public function getClassName(){
+        return get_class($this);
+    }
 
     public function forca(){
         return ($this->luta*2 + $this->magia*3 + $this->sobrehumano*3 + $this->level)/9;
@@ -95,42 +116,59 @@ class Batalha{
 
     public function vencedor(){
         if($this->c1->forca() > $this->c2->forca()){
-            return $this->c1->nome;
+            geraCarta($this->c1);
         }else if($this->c2->forca() > $this->c1->forca()){
-            return $this->c1->nome;
+            geraCarta($this->c2);
         }else{
-            return "Empate";
+            echo "Empate";
         }
     }
 }
 
-function selectedC1($value){
-    $c1Atual = $value;
-    return $value->nome;
-}
+$armas[] = new Arma("Granada", 4);
+$armas[] = new Arma("Escudo do Capitão", 4);
+$armas[] = new Arma("Bastão do Infinito", 5);
 
-function selectedC2($value){
-    $c2Atual = $value;
-    return $value->nome;
-}
-
-$armas[] = new Arma("Mjolnir", 4);
-$armas[] = new Arma("Escudo do Capitaum", 4);
-$armas[] = new Arma("Gume do Infinito", 4);
-
-$cartas[] = new Personagem(0, "Goku Fake", 2, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
+$cartas[] = new Personagem(0, "Kitty Pryde", 4, "black", "img\kitty.jpeg",
 20, "Humano", 3, 2, 1, $armas[0]);
 
-$cartas[] = new Personagem(1, "Capitão Brasil", 5, "green", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
+$cartas[] = new Personagem(1, "Capitão América", 5, "blue", "img\capAmerica.png",
 40, "Humano", 5, 0, 0, $armas[1]);
 
-$cartas[] = new Personagem(2, "Dr. Estranho", 5, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
+$cartas[] = new Personagem(2, "Dr. Estranho", 5, "red", "img\drEstranho.jpg",
 45, "Humano", 4, 5, 4, $armas[2]);
 
-$cartas[] = new Local(3, "Latveria", 3, "yellow", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png", 
-100, 1, 3);
+$cartas[] = new Local(3, "Latveria", 3, "green", "img\latveria.jpg", 
+100, 2, 3);
 
-$cartas[] = new Veiculo(4, "SpiderMovel", 4, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
- 90, False, 1);
+$cartas[] = new Veiculo(4, "Batmóvel", 4, "red", "img\batmovel.jpg",
+ 90, False, 2);
+
+function geraCarta($carta){
+    echo
+        "<div class='cartas--carta' style = 'background-color: ", $carta->cor,"; color: white; width: 200px; text-align: center'>
+        <img src=",$carta->imagem," width='100px' height='100px'> <br>",
+            "ID: ", $carta->id,"<br>",
+            "Nome: ", $carta->nome, "<br>",
+            "Level: ", $carta->level, "<br>";
+        
+        if($carta->getClassName()=="Personagem"){
+            echo
+            "Idade: ", $carta->idade,"<br>",
+            "Raça: ", $carta->raca, "<br>",
+            "Arma: ", $carta->arma->nome, "<br>";
+        }else if($carta->getClassName()=="Local"){
+            echo
+            "Área: ", $carta->area," km² <br>",
+            "População: ", $carta->populacao, " milhões <br>",
+            "Status: ", $carta->status, "<br>";
+        }else{
+            echo
+            "Velocidade: ", $carta->velocidade," km/h<br>",
+            "Voa? ", $carta->voar(), "<br>",
+            "Capacidade: ", $carta->capacidade, " pessoas<br>";
+        }
+        echo "</div> <br>";
+}
 
 ?>
