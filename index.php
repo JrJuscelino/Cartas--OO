@@ -10,20 +10,26 @@
     <div>
         <h1>BATALHA</h1>
         <form action = " " method = "post">
-            <select name = "carta1">
-                <?php foreach ($cartas as $value): ?>
-                    <?php echo "<option value=",$value->nome,">",$value->nome,"</option>"; ?>
+            <select name = "carta1" value="valor">
+                <?php foreach ($cartas as $i=>$value): ?>
+                    <?php echo "<option value=",$i,">",$value->nome,"</option>"; ?>
                 <?php endforeach; ?>
             </select>
-        </form>
-        "VS"
-        <form action = " " method = "post">
+        VS
             <select name = "carta2">
-                <?php foreach ($cartas as $value): ?>
-                    <?php echo "<option value=",$value->nome,">",$value->nome,"</option>"; ?>
+                <?php foreach ($cartas as  $i=>$value): ?>
+                <?php echo "<option value=",$i,">",selectedC2($value),"</option>"; ?>
                 <?php endforeach; ?>
             </select>
+            <input type="submit" name="batalhar" value="Batalhar">
         </form>
-    </div> 
+       
+        <?php 
+        if(isset($_POST["batalhar"])){
+            $batalha = new Batalha($cartas[$_POST["carta1"]], $cartas[$_POST["carta2"]]);
+            echo $batalha->vencedor();
+        }
+        ?>
+    </div>     
   </body>
 </html>

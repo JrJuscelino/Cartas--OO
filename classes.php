@@ -104,6 +104,16 @@ class Batalha{
     }
 }
 
+function selectedC1($value){
+    $c1Atual = $value;
+    return $value->nome;
+}
+
+function selectedC2($value){
+    $c2Atual = $value;
+    return $value->nome;
+}
+
 $armas[] = new Arma("Mjolnir", 4);
 $armas[] = new Arma("Escudo do Capitaum", 4);
 $armas[] = new Arma("Gume do Infinito", 4);
@@ -122,9 +132,5 @@ $cartas[] = new Local(3, "Latveria", 3, "yellow", "https://esferasdodragao.com.b
 
 $cartas[] = new Veiculo(4, "SpiderMovel", 4, "red", "https://esferasdodragao.com.br/wp-content/uploads/2019/03/goku_super_saiyan_4_by_chronofz-dcgekiz-743x1024.png",
  90, False, 1);
-
-$batalha[] = new Batalha($cartas[0], $cartas[1]);
-
-$batalha[] = new Batalha($cartas[2], $cartas[3]);
 
 ?>
