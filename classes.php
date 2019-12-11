@@ -128,6 +128,11 @@ class Batalha{
 $armas[] = new Arma("Granada", 4);
 $armas[] = new Arma("Escudo do Capitão", 4);
 $armas[] = new Arma("Bastão do Infinito", 5);
+$armas[] = new Arma("Mjolnir", 5);
+$armas[] = new Arma("Pistola", 5);
+$armas[] = new Arma("Cubo Cósmico", 5);
+$armas[] = new Arma("Olho de Agamotto", 5);
+$armas[] = new Arma("Caixa Materna", 5);
 
 $cartas[] = new Personagem(0, "Kitty Pryde", 4, "black", "img\kitty.jpeg",
 20, "Humano", 3, 2, 1, $armas[0]);
@@ -136,7 +141,7 @@ $cartas[] = new Personagem(1, "Capitão América", 5, "blue", "img\capAmerica.pn
 40, "Humano", 5, 0, 4, $armas[1]);
 
 $cartas[] = new Personagem(2, "Dr. Estranho", 5, "red", "img\drEstranho.jpg",
-45, "Humano", 4, 5, 4, $armas[2]);
+45, "Humano", 4, 5, 4, $armas[6]);
 
 $cartas[] = new Local(3, "Latveria", 3, "green", "img\latveria.jpg", 
 100, 2, 3);
