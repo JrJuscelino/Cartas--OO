@@ -133,7 +133,7 @@ $cartas[] = new Personagem(0, "Kitty Pryde", 4, "black", "img\kitty.jpeg",
 20, "Humano", 3, 2, 1, $armas[0]);
 
 $cartas[] = new Personagem(1, "Capitão América", 5, "blue", "img\capAmerica.png",
-40, "Humano", 5, 0, 0, $armas[1]);
+40, "Humano", 5, 0, 4, $armas[1]);
 
 $cartas[] = new Personagem(2, "Dr. Estranho", 5, "red", "img\drEstranho.jpg",
 45, "Humano", 4, 5, 4, $armas[2]);
@@ -150,7 +150,8 @@ function geraCarta($carta){
         <img src=",$carta->imagem," width='100px' height='100px'> <br>",
             "ID: ", $carta->id,"<br>",
             "Nome: ", $carta->nome, "<br>",
-            "Level: ", $carta->level, "<br>";
+            "Level: ", $carta->level, "<br>",
+            "Força: ", round($carta->forca(),2), "<br>";
         
         if($carta->getClassName()=="Personagem"){
             echo
