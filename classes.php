@@ -8,6 +8,7 @@ abstract class Carta {
     public $imagem;
 
     abstract function forca();
+    abstract function toString();
 }
 
 class Arma{
@@ -18,6 +19,7 @@ class Arma{
         $this->capacidade = $capacidade;
     }
 }
+
 class Local extends Carta{
     public $area;
     public $populacao;
@@ -38,6 +40,19 @@ class Local extends Carta{
     }
     public function forca(){
         return ($this->area/200 + $this->populacao/4 + $this->status + $this->level)/4;
+    }
+    public function toString(){
+        echo
+        "<div class='cartas--carta' style = 'background-color: ", $this->cor,"; color: white; width: 200px; text-align: center'>
+        <img src=",$this->imagem," width='100px' height='100px'> <br>",
+            "ID: ", $this->id,"<br>",
+            "Nome: ", $this->nome, "<br>",
+            "Level: ", $this->level, "<br>",
+            "Força: ", round($this->forca(),2), "<br>",
+            "Área: ", $this->area," km² <br>",
+            "População: ", $this->populacao, " milhões <br>",
+            "Status: ", $this->status, "<br>",
+        "</div> <br>";
     }
 }
 
@@ -73,6 +88,20 @@ class Veiculo extends Carta{
         return ($this->velocidade/200 + $this->capacidade/200 + $this->level)/3;
     }
 
+    public function toString(){
+        echo
+        "<div class='cartas--carta' style = 'background-color: ", $this->cor,"; color: white; width: 200px; text-align: center'>
+        <img src=",$this->imagem," width='100px' height='100px'> <br>",
+            "ID: ", $this->id,"<br>",
+            "Nome: ", $this->nome, "<br>",
+            "Level: ", $this->level, "<br>",
+            "Força: ", round($this->forca(),2), "<br>",
+            "Velocidade: ", $this->velocidade," km/h<br>",
+            "Voa? ", $this->voar(), "<br>",
+            "Capacidade: ", $this->capacidade, " pessoas<br>",
+        "</div> <br>";
+    }
+
 }
 class Personagem extends Carta{
     public $idade;
@@ -103,6 +132,19 @@ class Personagem extends Carta{
     public function forca(){
         return ($this->luta*2 + $this->magia*3 + $this->sobrehumano*3 + $this->level)/9;
     }
+    public function toString(){
+        echo
+        "<div class='cartas--carta' style = 'background-color: ", $this->cor,"; color: white; width: 200px; text-align: center'>
+        <img src=",$this->imagem," width='100px' height='100px'> <br>",
+            "ID: ", $this->id,"<br>",
+            "Nome: ", $this->nome, "<br>",
+            "Level: ", $this->level, "<br>",
+            "Força: ", round($this->forca(),2), "<br>",
+            "Idade: ", $this->idade,"<br>",
+            "Raça: ", $this->raca, "<br>",
+            "Arma: ", $this->arma->nome, "<br>",
+        "</div> <br>";
+    }
 }
 
 class Batalha{
@@ -116,9 +158,9 @@ class Batalha{
 
     public function vencedor(){
         if($this->c1->forca() > $this->c2->forca()){
-            geraCarta($this->c1);
+            $this->c1->toString();
         }else if($this->c2->forca() > $this->c1->forca()){
-            geraCarta($this->c2);
+            $this->c2->toString();
         }else{
             echo "Empate";
         }
@@ -148,33 +190,5 @@ $cartas[] = new Local(3, "Latveria", 3, "green", "img\latveria.jpg",
 
 $cartas[] = new Veiculo(4, "Batmóvel", 4, "red", "img\batmovel.jpg",
  90, False, 2);
-
-function geraCarta($carta){
-    echo
-        "<div class='cartas--carta' style = 'background-color: ", $carta->cor,"; color: white; width: 200px; text-align: center'>
-        <img src=",$carta->imagem," width='100px' height='100px'> <br>",
-            "ID: ", $carta->id,"<br>",
-            "Nome: ", $carta->nome, "<br>",
-            "Level: ", $carta->level, "<br>",
-            "Força: ", round($carta->forca(),2), "<br>";
-        
-        if($carta->getClassName()=="Personagem"){
-            echo
-            "Idade: ", $carta->idade,"<br>",
-            "Raça: ", $carta->raca, "<br>",
-            "Arma: ", $carta->arma->nome, "<br>";
-        }else if($carta->getClassName()=="Local"){
-            echo
-            "Área: ", $carta->area," km² <br>",
-            "População: ", $carta->populacao, " milhões <br>",
-            "Status: ", $carta->status, "<br>";
-        }else{
-            echo
-            "Velocidade: ", $carta->velocidade," km/h<br>",
-            "Voa? ", $carta->voar(), "<br>",
-            "Capacidade: ", $carta->capacidade, " pessoas<br>";
-        }
-        echo "</div> <br>";
-}
 
 ?>

@@ -13,13 +13,13 @@
             $_SESSION['cartas'] = $cartas;
         }
         ?>
-        <p>Trabalho para a disciplina de Linguagens de Programação - UFF Rio das Ostars 2019.2</p>
+        <p>Trabalho para a disciplina de Linguagens de Programação - UFF Rio das Ostras 2019.2</p>
         <p>Alunos: Juscelino Junior e Diego Couto</p>
         <form action ="" method="post" id="reiniciar"> <input type="submit" value="Atualizar"></form> <br>
         <div id = "cartas">
         <?php
             foreach($_SESSION['cartas'] as $carta):
-                geraCarta($carta);
+                $carta->toString();
             endforeach;
         ?>        
         </div>
